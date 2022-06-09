@@ -13,7 +13,7 @@ const fetchPost = async (id) => {
 		`https://jsonplaceholder.typicode.com/posts/${id}`
 	);
 
-	return data;
+	return data.slice(0, 10);
 };
 
 export { fetchPosts, fetchPost };
