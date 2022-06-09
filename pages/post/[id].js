@@ -8,8 +8,8 @@ function Post({ pageData, params }) {
 		() => fetchPost(params.id),
 		{
 			initialData: pageData,
-			refetchOnWindowFocus: false,
-			keepPreviousData: true
+			refetchOnWindowFocus: false
+			// keepPreviousData: true
 		}
 	);
 
