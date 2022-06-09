@@ -40,8 +40,8 @@ export const getStaticProps = async ({ params }) => {
 		props: {
 			pageData,
 			params
-		},
-		revalidate: 60
+		}
+		// revalidate: 60
 	};
 };
 
