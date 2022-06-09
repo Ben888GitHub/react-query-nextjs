@@ -1,28 +1,33 @@
-import axios from 'axios';
+import { useRouter } from 'next/router';
 import { fetchPost } from '../../api';
 import { useQuery } from 'react-query';
+import axios from 'axios';
 
-function Post({ pageData, params }) {
-	// const { data, isLoading, error } = useQuery(
-	// 	['post'],
-	// 	() => fetchPost(params.id),
-	// 	{
-	// 		initialData: pageData,
-	// 		refetchOnWindowFocus: false
-	// 		// keepPreviousData: true
-	// 	}
-	// );
+function Post({ pageData }) {
+	const router = useRouter();
+	const { id } = router.query;
 
-	// isLoading && <p>Loading...</p>;
+	const { data, isLoading, error } = useQuery(
+		['posts', id],
+		() => fetchPost(id),
+		{
+			initialData: pageData,
+			enabled: !!id,
+			refetchOnWindowFocus: false,
+			keepPreviousData: true
+		}
+	);
 
-	// error && <p>Error!</p>;
+	isLoading && <p>Loading...</p>;
+
+	error && <p>Error!</p>;
 
 	return (
 		<>
-			{pageData && (
+			{data && (
 				<>
-					<h3>{pageData?.title}</h3>
-					<h3>{pageData?.body}</h3>
+					<h3>{data?.title}</h3>
+					<h3>{data?.body}</h3>
 				</>
 			)}
 		</>

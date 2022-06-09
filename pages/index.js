@@ -2,20 +2,20 @@ import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
 import { fetchPosts } from '../api';
-// import { useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import Link from 'next/link';
 
 export default function Home({ posts }) {
-	// const { data, isLoading, error } = useQuery('posts', fetchPosts, {
-	// 	initialData: posts, // initial data is used to skip the loading state, similar to prefetching
-	// 	refetchOnWindowFocus: false
-	// 	// keepPreviousData: true
-	// });
+	const { data, isLoading, error } = useQuery('posts', fetchPosts, {
+		initialData: posts, // initial data is used to skip the loading state, similar to prefetching
+		refetchOnWindowFocus: false,
+		keepPreviousData: true
+	});
 
-	// // data && console.log(data);
-	// isLoading && <p>Loading...</p>;
+	// data && console.log(data);
+	isLoading && <p>Loading...</p>;
 
-	// error && <p>Error!</p>;
+	error && <p>Error!</p>;
 
 	return (
 		<div className={styles.container}>
@@ -28,8 +28,8 @@ export default function Home({ posts }) {
 			<main className={styles.main}>
 				<h1 className={styles.title}>React Query with NextJs</h1>
 				<br />
-				{posts &&
-					posts?.map((post) => (
+				{data &&
+					data?.map((post) => (
 						<div key={post.id}>
 							<Link href={`/post/${post.id}`}>{post.title}</Link>
 							{/* <h3>{post.title}</h3> */}
