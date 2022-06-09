@@ -8,7 +8,8 @@ import Link from 'next/link';
 export default function Home({ posts }) {
 	const { data, isLoading, error } = useQuery('posts', fetchPosts, {
 		initialData: posts, // initial data is used to skip the loading state, similar to prefetching
-		refetchOnWindowFocus: false
+		refetchOnWindowFocus: false,
+		keepPreviousData: true
 	});
 
 	// data && console.log(data);

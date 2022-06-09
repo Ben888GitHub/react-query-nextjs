@@ -7,7 +7,9 @@ function Post({ pageData, params }) {
 		['post'],
 		() => fetchPost(params.id),
 		{
-			initialData: pageData
+			initialData: pageData,
+			refetchOnWindowFocus: false,
+			keepPreviousData: true
 		}
 	);
 
