@@ -5,7 +5,7 @@ const fetchPosts = async (id) => {
 		`https://jsonplaceholder.typicode.com/posts`
 	);
 
-	return data;
+	return data.slice(0, 10);
 };
 
 const fetchPost = async (id) => {
@@ -13,7 +13,7 @@ const fetchPost = async (id) => {
 		`https://jsonplaceholder.typicode.com/posts/${id}`
 	);
 
-	return data.slice(0, 10);
+	return data;
 };
 
 export { fetchPosts, fetchPost };
